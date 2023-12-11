@@ -50,7 +50,8 @@ img {
 
 .main {
     height: 100vh;
-    max-height: 1000px;
+    max-height: 900px;
+    background: url(../img/main-bg.jpg);
 }
 
 .menu {
@@ -103,9 +104,7 @@ img {
 
 
 
-.main {
-    background: url(../img/main-bg.jpg);
-}
+
 
 .main-content {
     padding-top: 150px;
@@ -114,7 +113,7 @@ img {
 .main-content .container {
     display: flex;
     height: calc(100vh - 150px - 66px);
-    max-height: calc(1000px - 150px - 66px);
+    max-height: calc(900px - 150px - 66px);
 }
 
 .main-content-info-text {
@@ -128,10 +127,10 @@ img {
 .main-content-info-text h1 {
     font-size: 48px;
     line-height: 46px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
-.main-content-info-text p {
+.main-content-info-text h2 {
     font-size: 16px;
     line-height: 20px;
     font-weight: 400;
@@ -151,6 +150,11 @@ img {
     cursor: pointer;
 }
 
+.main-content-info-mobile a {
+    padding: 0 35px;
+    height: 25px;
+}
+
 .main-content-info-button:hover {
     background: linear-gradient(90deg, #292929 5.67%, rgba(0, 0, 0, 0.54) 51.07%, rgba(31, 31, 31, 0.99) 100%);
 }
@@ -163,11 +167,6 @@ img {
 
 .main-content-info-mobile {
     display: none;
-}
-
-.main-content-info-mobile a {
-    padding: 0 35px;
-    height: 25px;
 }
 
 
@@ -185,9 +184,6 @@ img {
     margin-bottom: 60px;
 }
 
-.preim-blocks {
-}
-
 .preim-block {
     width: 800px;
     height: 200px;
@@ -200,7 +196,28 @@ img {
     justify-content: flex-end;
     margin-bottom: 20px;
     position: relative;
+
+    transform: translate(-10%, 0px);
+    opacity: 0;
+    transition: all 1.1s ease 0.1s;
 }
+
+.preim-block.active {
+    transform: translate(0px, 0px);
+    opacity: 1;
+}
+
+.right-anim {
+    transform: translate(10%, 0px);
+    opacity: 0;
+    transition: all 1.1s ease 0.1s;
+}
+
+.right-anim.active {
+    transform: translate(0px, 0px);
+    opacity: 1;
+}
+
 
 .preim-block:nth-child(2n) {
     background: url(../img/preim-bg2.png);
