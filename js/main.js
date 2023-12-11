@@ -7,26 +7,47 @@ hamburger.addEventListener("click", () => {
 });
 
 
-// изменение контейнера высота
+// scrolls
 
-// function hideImageOutsideSection() {
-//     var section = document.querySelector('.main');
-//     var image = document.querySelector('.main-content-img');
+const animItems = document.querySelectorAll(".anim-items");
 
-//     var sectionRect = section.getBoundingClientRect();
-//     var imageRect = image.getBoundingClientRect();
+if (animItems.length > 0) {
+  window.addEventListener("scroll", animOnScroll);
 
-//     // Проверяем, выходит ли изображение за пределы секции по высоте
-//     var isImageOutside = imageRect.bottom > sectionRect.bottom;
+  function animOnScroll() {
+    for (let index = 0; index < animItems.length; index++) {
+      const animItem = animItems[index];
+      const animItemHeight = animItem.offsetHeight;
+      const animItemOffset = offset(animItem).top;
+      const animStart = 4;
 
-//     // Скрываем или отображаем изображение
-//     image.style.display = isImageOutside ? 'none' : 'flex';
-//   }
+      let animItemPoint = window.innerHeight - animItemHeight / animStart;
 
-//   // Вызываем функцию при изменении размеров окна с использованием requestAnimationFrame
-//   function handleResize() {
-//     requestAnimationFrame(hideImageOutsideSection);
-//   }
+      if (animItemHeight > window.innerHeight) {
+        animItemPoint = window.innerHeight - window.innerHeight / animStart;
+      }
 
-//   // Вызываем функцию при загрузке страницы и изменении размеров окна
-//   window.onload = window.onresize = handleResize;
+      if (
+        window.pageYOffset > animItemOffset - animItemPoint &&
+        window.pageYOffset < animItemOffset + animItemHeight
+      ) {
+        animItem.classList.add("active");
+      } else {
+        if (animItem.classList.contains('.aNNHide')) {
+          animItem.classList.remove("active");
+        }
+        
+      }
+    }
+  }
+
+  function offset(el) {
+    const rect = el.getBoundingClientRect(),
+      scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+      scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    return { top: rect.top + scrollTop, left: rect.left + scrollLeft };
+  }
+  setTimeout(() => {
+    animOnScroll();
+  }, 300);
+}
