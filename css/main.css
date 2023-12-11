@@ -165,6 +165,11 @@ img {
     display: none;
 }
 
+.main-content-info-mobile a {
+    width: 120px;
+    height: 25px;
+}
+
 
 
 
